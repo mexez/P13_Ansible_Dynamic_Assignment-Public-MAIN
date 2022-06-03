@@ -10,6 +10,12 @@ pipeline {
       }
     }
 
+  stage('Checkout SCM') {
+         steps{
+            git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/mexez/P14_CI-with-Jenkins-Ansible-Artifactory-Sonarqube-PHP.git'
+         }
+       }
+
     stage('Build') {
       steps {
         script {
