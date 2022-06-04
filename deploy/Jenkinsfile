@@ -2,20 +2,57 @@ pipeline {
     agent any
 
   stages {
-    stage('Build') {
+    stage('Initial cleanup') {
       steps {
-        script {
-          sh 'echo "Building Stage"'
+        dir('${WORKSPACE}') {
+          deleteDir()
+       } 
+      }
+    }
+
+  stage('Checkout SCM') {
+      steps{
+            git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/mexez/P14_CI-with-Jenkins-Ansible-Artifactory-Sonarqube-PHP.git'
+         }
+       }
+
+  stage('Build') {
+    steps {
+      script {
+        sh 'echo "Building Stage"'
         }
       }
     }
 
-    stage('Test') {
-      steps {
-        script {
+  stage('Test') {
+    steps {
+      script {
           sh 'echo "Testing Stage"'
         }
       }
     }
+
+  stage('Package') {
+    steps {
+      script {
+          sh 'echo "Packaging App"'
+        }
+      }
+    }
+
+  stage('Deploy') {
+    steps {
+      script {
+          sh 'echo "Deploying to Dev"'
+        }
+      }
+    }
+    
+  stage('clean up'){
+    steps {
+      cleanWs()
+    } 
+   }
+   
     }
 }
