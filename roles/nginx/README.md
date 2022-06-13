@@ -247,15 +247,40 @@ This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/),
 
 
 
+### Modifications made in Nginx
+===============================
+
+#####(Added) Nginx > task > main.yml
+
+```
+---
+# tasks file for nginx
+- name: install nginx on the webserver
+  ansible.builtin.yum:
+      name: nginx
+      state: present
 
 
+- name: ensure nginx is started and enabled
+  ansible.builtin.service:
+     name: nginx
+     state: started 
+     enabled: yes
 
+- name: install PHP
+  ansible.builtin.yum:
+    name:
+      - php 
+      - php-mysqlnd
+      - php-gd 
+      - php-curl
+    state: present
+```
 
-
-
+#####Removed
 
 >>> Nginx> default> main
-
+```
 # Used only for Debian/Ubuntu installation, as the -t option for apt.
 nginx_default_release: ""
 
@@ -357,12 +382,11 @@ nginx_vhosts: []
 
 #enable_nginx_lb: false
 #load_balancer_is_required: false
+```
 
 
-
-
-nginx>task>setup-RedHat.yml
-
+### nginx>task>setup-RedHat.yml
+```
 ---
 - name: Enable nginx repo.
   become: yes
@@ -427,10 +451,11 @@ nginx> task>vhost.yml
     path: "{{ nginx_vhost_path }}/vhosts.conf"
     state: absent
   notify: reload nginx
+  ```
 
 
-nginx>task>main
-
+### nginx>task>main
+```
 ---
 # Variable setup.
 - name: Include OS-specific variables.
@@ -481,3 +506,5 @@ nginx>task>main
     name: nginx
     state: "{{ nginx_service_state }}"
     enabled: "{{ nginx_service_enabled }}"
+    ```
+
