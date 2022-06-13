@@ -1,11 +1,11 @@
 [nginx]
-172.31.46.158 ansible_ssh_user='ubuntu'
+172.31.46.158 ansible_ssh_user='ec2-user'
 
 [db]
-172.31.34.157 ansible_ssh_user='ec2-user' 
+172.31.34.157 ansible_ssh_user='ubuntu' 
 
-#[nfs]
-#172.31.26.143 ansible_ssh_user='ec2-user'
+[nfs]
+172.31.26.143 ansible_ssh_user='ec2-user'
         
 #[uat-webservers]
 #172.31.9.5 ansible_ssh_user='ec2-user'
