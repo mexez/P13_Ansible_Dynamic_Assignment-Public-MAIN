@@ -24,7 +24,7 @@ pipeline {
             git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/mexez/P14_CI-with-Jenkins-Ansible-Artifactory-Sonarqube-PHP.git'
          }
        }
-     
+  
   stage('Prepare Ansible For Execution') {
       steps {
         sh 'echo ${WORKSPACE}'
