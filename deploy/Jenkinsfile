@@ -1,5 +1,14 @@
+
 pipeline {
     agent any
+
+    environment {
+       ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+     }
+
+    parameters {
+      string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+    } 
 
   stages {
     stage('Initial cleanup') {
@@ -8,51 +17,31 @@ pipeline {
           deleteDir()
        } 
       }
-    }
+    } 
 
   stage('Checkout SCM') {
       steps{
             git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/mexez/P14_CI-with-Jenkins-Ansible-Artifactory-Sonarqube-PHP.git'
          }
        }
-
-  stage('Build') {
-    steps {
-      script {
-        sh 'echo "Building Stage"'
+  
+  stage('Prepare Ansible For Execution') {
+      steps {
+        sh 'echo ${WORKSPACE}'
+        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
         }
       }
-    }
 
-  stage('Test') {
-    steps {
-      script {
-          sh 'echo "Testing Stage"'
+  stage('Run Ansible playbook') {
+      steps {
+        ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
         }
       }
-    }
 
-  stage('Package') {
-    steps {
-      script {
-          sh 'echo "Packaging App"'
+      stage('Clean Workspace after build'){
+        steps{
+          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
         }
       }
-    }
-
-  stage('Deploy') {
-    steps {
-      script {
-          sh 'echo "Deploying to Dev"'
-        }
-      }
-    }
-    
-  stage('clean up'){
-    steps {
-      cleanWs()
-    } 
    }
-   
-    }
-}
+}  
