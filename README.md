@@ -78,3 +78,24 @@ allow_world_readable_tmpfiles=true
 [ssh_connection]
 ssh_args = -o ControlMaster=auto -o ControlPersist=30m -o ControlPath=/tmp/ansible-ssh-%h-%p-%r -o ServerAliveInterval=60 -o ServerAliveCountMax=6
 ```
+
+==============================
+
+# Install php and its modules
+=====================
+        sudo su - (sudo login)
+yum module reset php -y
+yum module enable php:remi-7.4 -y
+yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+systemctl start php-fpm
+systemctl enable php-fpm
+
+Install composer
+=====================================
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/bin/composer
+   Verify Composer is installed or not
+composer --version
+
+### Artifactory
+================
