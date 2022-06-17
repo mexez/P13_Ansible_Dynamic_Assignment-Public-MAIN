@@ -41,7 +41,7 @@ artifactory_tar: https://releases.jfrog.io/artifactory/artifactory-pro/org/artif
 artifactory_untar_home: "{{ jfrog_home_directory }}/artifactory-{{ artifactory_flavour }}-{{ artifactory_version }}"
 
 # Timeout in seconds for URL request
-artifactory_download_timeout: 10
+artifactory_download_timeout: 60
 
 postgres_driver_version: 42.2.23
 postgres_driver_download_url: https://repo1.maven.org/maven2/org/postgresql/postgresql/{{ postgres_driver_version }}/postgresql-{{ postgres_driver_version }}.jar
