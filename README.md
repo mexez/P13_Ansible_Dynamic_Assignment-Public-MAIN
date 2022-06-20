@@ -99,3 +99,15 @@ composer --version
 
 ### Artifactory
 ================
+
+
+#### for database connection
+=============================
+
+sudo yum install mysql (install mysql client)
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+DB_CONNECTION=mysql
+DB_PORT=3306
+
+sudo systemctl restart mysql
+sudo systemctl status mysql
