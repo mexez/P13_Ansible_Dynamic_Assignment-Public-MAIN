@@ -112,17 +112,11 @@ mysql_databases:
     encoding: utf8
     replicate: 1
 
-mysql_users: 
-  - name: homestead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-    host: 172.31.34.205
-    password: secret
-    priv: '*.*:ALL,GRANT'
-
 mysql_databases:
   - name: homestead
     collation: utf8_general_ci
-    encoding: utf8
-    replicate: 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    encoding: utf8       
+    replicate: 1                                                      
 
 # Users.
 mysql_users: 
@@ -131,6 +125,12 @@ mysql_users:
     password: secret
     priv: '*.*:ALL,GRANT'
 
+mysql_users:
+  - name: homestead
+    host: 172.31.44.253
+    password: sePret^i
+    priv: '*.*:ALL,GRANT'
+                                                                     
 # Replication settings (replication is only enabled if master/user have values).
 mysql_server_id: "1"
 mysql_max_binlog_size: "100M"
