@@ -50,10 +50,10 @@
 
     - name: Download the artifact
       get_url:
-        url: http://3.22.117.98:8082/artifactory/AEON/php-todo
+        url: http://3.19.77.215:8082/artifactory/AEON/php-todo
         dest: /home/ec2-user/
         url_username: admin
-        url_password: AP2B1BmxtdHSb4rVAF8joaiSwc1 
+        url_password: AP2B1BmxtdHSb4rVAF8joaiSwc1
 
 
     - name: unzip the artifacts
