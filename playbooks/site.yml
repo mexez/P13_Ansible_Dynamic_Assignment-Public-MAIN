@@ -15,9 +15,9 @@
  #- name: Deploy the todo application
  #  ansible.builtin.import_playbook: ../static-assignments/deployment.yml
 
- - hosts: sonarqube
+ - hosts: sonar
  - name: sonarqube assignment
-   ansible.builtin.import_playbook: ../static-assignments/sonarqube.yml
+   ansible.builtin.import_playbook: ../static-assignments/sonar.yml
 
 #- name: import common file
   #become: true

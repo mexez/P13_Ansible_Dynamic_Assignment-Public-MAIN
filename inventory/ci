@@ -10,5 +10,5 @@
 [nginx]
 172.31.46.158 ansible_ssh_user='ec2-user'
 
-[sonarqube]
+[sonar]
 172.31.36.1 ansible_ssh_user='ubuntu' 
