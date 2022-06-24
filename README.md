@@ -100,10 +100,12 @@ composer --version
 ### Artifactory
 ================
 
+### Installing JAVA
+====================================
+sudo yum install java-11-openjdk-devel -y
 
 #### for database connection
 =============================
-
 sudo yum install mysql (install mysql client)
 sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 DB_CONNECTION=mysql
@@ -111,3 +113,9 @@ DB_PORT=3306
 
 sudo systemctl restart mysql
 sudo systemctl status mysql
+
+### For Mysql Database
+===================
+ansible-galaxy collection install community.mysql
+For Postgresql Database
+ansible-galaxy collection install community.postgresql
