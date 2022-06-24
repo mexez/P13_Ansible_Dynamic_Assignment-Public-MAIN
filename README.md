@@ -116,6 +116,9 @@ sudo systemctl status mysql
 
 ### For Mysql Database
 ===================
+python3 -m pip install PyMySQL
+python3 -m pip install MySQLdb
 ansible-galaxy collection install community.mysql
+
 For Postgresql Database
 ansible-galaxy collection install community.postgresql
