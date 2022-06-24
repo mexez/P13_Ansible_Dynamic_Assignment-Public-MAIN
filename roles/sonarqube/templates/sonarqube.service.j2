@@ -1,3 +1,5 @@
+
+
 [Unit]
 Description=SonarQube service
 After=syslog.target network.target
@@ -5,12 +7,15 @@ After=syslog.target network.target
 [Service]
 Type=forking
 
-ExecStart=/opt/sonarqube/sonarqube-7.5/bin/linux-x86-64/sonar.sh start
-ExecStop=/opt/sonarqube/sonarqube-7.5/bin/linux-x86-64/sonar.sh stop
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
 
-User=ansadmin
-Group=ansadmin
+User=sonar
+Group=sonar
 Restart=always
+
+LimitNOFILE=65536
+LimitNPROC=4096
 
 [Install]
 WantedBy=multi-user.target
