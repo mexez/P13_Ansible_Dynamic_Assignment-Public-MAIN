@@ -11,4 +11,4 @@
 172.31.46.158 ansible_ssh_user='ec2-user'
 
 [sonar]
-172.31.36.1 ansible_ssh_user='ubuntu' 
+172.31.44.183 ansible_ssh_user='ubuntu' 
